@@ -15,15 +15,15 @@ class Scraper:
             url = tag.get("href")
             if url is None:
                 continue
-            if "html" in url:
+            if "html" in url and url[15:17] == "20":
                 count += 1
-                ext.append(f"\n {count}. |-> {url} <-|")
+                ext.append(f"\n {count}.| {url} <-|")
         return ext
 
 while True:
     news = input("Input website url-link: ")
     if news[0:8] != "https://":
-        print("Error")
+        print("Error url link or it's not a safety!")
     else:
         my_file = open('news','w')
         my_file.writelines(Scraper(news).scraper())
