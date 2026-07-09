@@ -9,18 +9,22 @@ class Scraper:
         html = r.read()
         parser = "html.parser"
         sp = BeautifulSoup(html, parser)
+        ext = []
+        count = 0
         for tag in sp.find_all("a"):
             url = tag.get("href")
             if url is None:
                 continue
             if "html" in url:
-                print("\n" + url)
+                count += 1
+                ext.append(f"\n {count}. |-> {url} <-|")
+        return ext
 
 while True:
     news = input("Input website url-link: ")
     if news[0:8] != "https://":
-        print(news[0:8])
         print("Error")
     else:
-        Scraper(news).scraper
-        
+        my_file = open('news','w')
+        my_file.writelines(Scraper(news).scraper())
+        my_file.close()
