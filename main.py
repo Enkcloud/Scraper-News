@@ -16,6 +16,11 @@ class Scraper:
             if "html" in url:
                 print("\n" + url)
 
-news = input("Input website link: ")
-Scraper(news).scraper()
+while True:
+    news = input("Input website url-link: ")
+    if news[0:8] != "https://":
+        print(news[0:8])
+        print("Error")
+    else:
+        Scraper(news).scraper
         
