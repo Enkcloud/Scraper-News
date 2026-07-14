@@ -25,6 +25,11 @@ while True:
     if news[0:8] != "https://":
         print("Error url link or it's not a safety!")
     else:
-        my_file = open('news','w')
-        my_file.writelines(Scraper(news).scraper())
-        my_file.close()
+        with open("news.txt", 'w') as news_file:
+            news_file.writelines(Scraper(news).scraper())
+            print(f"""                  ------------------------------------
+                                | LOGS |
+                  File "{news_file.name}" has been create!
+                  Search link: -> {news} <-
+                  ------------------------------------""")
+            
